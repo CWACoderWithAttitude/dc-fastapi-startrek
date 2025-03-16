@@ -1,0 +1,55 @@
+###
+# Create a simple ship
+@port=9600
+@host=localhost
+@token=aaa
+
+# Create a full ship
+POST http://{{host}}:{{port}}/ship_secure/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2b2xrZXIiLCJleHAiOjE3NDIxNjU5OTF9.ISAMskdtJ7TSix4yQHf2Ngir2V6K5HTp_PQ7Ipqy7P0
+Content-Type: application/json
+
+{
+    "name": "USS Franklin",
+    "sign": "NX-326",
+    "classification": "Starship",
+    "speed": "Warp 4",
+    "captain": "balthazar edison",
+    "comment": "lost ~2160, first warp 4 capable ship",
+    "url":"https://memory-alpha.fandom.com/wiki/Star_Trek:_The_Next_Generation"
+}
+###
+@host=localhost
+@port=9600
+PUT http://{{host}}:{{port}}/ship_secure/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2b2xrZXIiLCJleHAiOjE3NDIxNjU5OTF9.ISAMskdtJ7TSix4yQHf2Ngir2V6K5HTp_PQ7Ipqy7P0
+Content-Type: application/json
+
+{
+    "name": "USS Daunbtless.PUT2", "classification": "german.PUT2", "sign": "NCC-80816.PUT2"
+}
+?? status == 200
+
+
+###
+#
+#Authorization: Basic volker:Example1!
+#accept: application/json' 
+# get access token
+POST http://localhost:9600/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password
+username=volker
+password=Example1!
+scope=
+client_id=string
+client_secret=string
+
+?? status == 200
+###
+# get user details
+GET http://localhost:9600/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2b2xrZXIiLCJleHAiOjE3NDIxNjU5OTF9.ISAMskdtJ7TSix4yQHf2Ngir2V6K5HTp_PQ7Ipqy7P0
+
+?? status == 200
