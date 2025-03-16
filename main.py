@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from typing import Annotated
+from typing import Annotated, Literal
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
@@ -74,11 +74,12 @@ db_password: str = os.environ.get("db_password", "<MY-DB-PASSWD>")
 # DATABASE_URL = f"postgresql://{db_user}:${db_password}@db/{db_name}"
 # DATABASE_URL = "postgresql://chuck:norris@db/chuck_norris_db"
 
-# DATABASE_URL = "postgresql://chuck:norris@db/startrek_db"
 # engine: Engine = create_engine(DATABASE_URL, echo=True)
 
-DATABASE_URL = "sqlite:///./startrek-ships.db"
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False}, echo=True)
+DATABASE_URL = "postgresql://star:trek@db/star-trek-ships-db"
+# DATABASE_URL = "sqlite:///./startrek-ships.db"
+# engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False}, echo=True)
+engine = create_engine(DATABASE_URL, echo=True)
 SQLModel.metadata.create_all(engine)
 
 
@@ -88,21 +89,21 @@ Instrumentator().instrument(app).expose(app)
 # oauth2 stuff
 
 
-def verify_password(plain_password, hashed_password):
+def verify_password(plain_password, hashed_password) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
 
-def get_password_hash(password):
+def get_password_hash(password) -> str:
     return pwd_context.hash(password)
 
 
-def get_user(db, username: str):
+def get_user(db, username: str) -> UserInDB | None:
     if username in db:
         user_dict = db[username]
         return UserInDB(**user_dict)
 
 
-def authenticate_user(fake_db, username: str, password: str):
+def authenticate_user(fake_db, username: str, password: str) -> UserInDB | Literal[False]:
     user = get_user(fake_db, username)
     if not user:
         return False
@@ -111,7 +112,7 @@ def authenticate_user(fake_db, username: str, password: str):
     return user
 
 
-def create_access_token(data: dict, expires_delta: timedelta | None = None):
+def create_access_token(data: dict, expires_delta: timedelta | None = None) -> str:
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
