@@ -57,17 +57,18 @@ services:
   #depends_on:
   #  - dc-startrek
 
-  # grafana:
-  #   image: grafana/grafana
-  #   container_name: grafana
-  #   ports:
-  #     - ${grafana_port}:3000
-  #   volumes:
-  #     - grafana_data:/var/lib/grafana
-  #   networks:
-  #     dc-startrek-net:
-  #   depends_on:
-  #     - prometheus
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - ${grafana_port}:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      dc-startrek-net:
+    depends_on:
+       - prometheus
+
 networks:
   dc-startrek-net:
 volumes:

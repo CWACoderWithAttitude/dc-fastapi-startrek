@@ -37,7 +37,7 @@
   "service": "dc-startrek",
   "workspaceFolder": "/src",
   "remoteUser": "vscode",
-  //"postCreateCommand": "python generic_hello.py",
-  "postStartCommand": "pip install -r requirements.txt; ptw *.py",
+  //"postStartCommand": "pip install -r requirements.txt; ptw *.py",
+  "postStartCommand": "pip install -r requirements.txt; ./run_server.sh",
   "shutdownAction": "stopCompose"
 }

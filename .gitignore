@@ -6,3 +6,4 @@ coverage.xml
 junit/
 *.log
 *.log.*
+.devcontainer/grafana_data/
