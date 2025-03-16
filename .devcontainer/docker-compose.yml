@@ -43,19 +43,19 @@ services:
     networks:
       dc-startrek-net:
 
-  # prometheus:
-  #   image: prom/prometheus
-  #   container_name: prometheus
-  #   ports:
-  #     - ${prometheus_port}:9090
-  #   volumes:
-  #     - ./prometheus_data/:/etc/prometheus/
-  #   command:
-  #     - '--config.file=/etc/prometheus/prometheus.yml'
-  #   networks:
-  #     dc-startrek-net:
-  #   depends_on:
-  #       - dc-startrek
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - ${prometheus_port}:9090
+    volumes:
+      - ./prometheus_data/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      dc-startrek-net:
+  #depends_on:
+  #  - dc-startrek
 
   # grafana:
   #   image: grafana/grafana

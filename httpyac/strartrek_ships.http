@@ -34,7 +34,7 @@ GET http://localhost:9600/ship
 ?? status == 200
 
 ###
-# Patch a quote
+# Update a ship
 
 PUT http://localhost:{{port}}/ship/2
 Content-Type: application/json
@@ -42,31 +42,12 @@ Content-Type: application/json
 {
     "name": "USS Daunbtless.PUT2", "classification": "german.PUT2", "sign": "NCC-80816.PUT2"
 }
-
 ?? status == 200
-###
-# Create a list of quotes
-POST http://localhost:{{port}}/chuck_norris/
-Content-Type: application/json
-
-[
-    {
-    "quote": "Chuck Norris kann Drehtüren zuschlagen.", "language": "german"
-    },
-    {
-    "quote": "Chuck Norris kann Drehtüren zuschlagen.", "language": "german"
-    },
-    {
-    "quote": "Chuck Norris kann Drehtüren zuschlagen.", "language": "german"
-    }
-]
-
-?? status == 201
 
 ###
 # get just 5 chuck norris quotes
 ###
-GET http://localhost:{{port}}/chuck_norris?limit=2
+GET http://localhost:{{port}}/ship?limit=2
 
 ?? status == 200
 ###
@@ -83,8 +64,14 @@ GET http://localhost:9600/default_ships
 ?? status == 200
 
 ###
-# DELETE a specific chuck norris quote by id
+# DELETE an existing ship (before ensure that the ship exists)
 ###
-DELETE http://localhost:{{port}}/chuck_norris/1
+DELETE http://localhost:{{port}}/ship/1
 
 ?? status == 204
+###
+# DELETE an existing ship (before ensure that the ship exists)
+###
+DELETE http://localhost:9600/ship/1234567890
+
+?? status == 666
