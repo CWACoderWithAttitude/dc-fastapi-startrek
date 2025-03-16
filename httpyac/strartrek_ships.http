@@ -75,3 +75,8 @@ DELETE http://{{host}}:{{port}}/ship/2
 DELETE http://{{host}}:{{port}}/ship/1234567890
 
 ?? status == 404
+
+###
+# get user details
+GET http://localhost:9600/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNzQyMTYwNzczfQ.kpkIcwKhgBCLGvQ2z2XRXPgbQP9o3Q-qVwx8MrjN0kE

@@ -38,6 +38,7 @@ To use it:
 * http://localhost:9630/connections/datasources/edit/defqw6dierj7ke[Grafana Datasource] (admin/admin)
 * http://localhost:9600/chuck_norris/[FastAPI Chuck Norris Quotes]
 * http://localhost:9610/?pgsql=db&username=star&password=trek&db=star-trek-ships-db[Adminer Startrek Ships DB]
+* OAuth2 implementation as outlined in https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/#update-the-dependencies[FastAPI OAuth2 JWT] on fastapi.tiangolo.com
 
 == How 2 use
 First of all we need to add you sourcecode to the container setup.   
