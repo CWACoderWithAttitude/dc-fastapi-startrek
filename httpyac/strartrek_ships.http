@@ -1,7 +1,8 @@
 ###
 # Create a simple ship
 @port=9600
-POST http://localhost:{{port}}/ship/
+@host=localhost
+POST http://{{host}}:{{port}}/ship/
 Content-Type: application/json
 
 {
@@ -10,10 +11,9 @@ Content-Type: application/json
     "classification": "Starship"
 }
 
-###
+
 # Create a full ship
-@port=9600
-POST http://localhost:{{port}}/ship/
+POST http://{{host}}:{{port}}/ship/
 Content-Type: application/json
 
 {
@@ -29,14 +29,14 @@ Content-Type: application/json
 ###
 # get all ships
 ###
-GET http://localhost:9600/ship
+GET http://{{host}}:{{port}}/ship
 
 ?? status == 200
 
 ###
 # Update a ship
 
-PUT http://localhost:{{port}}/ship/2
+PUT http://{{host}}:{{port}}/ship/2
 Content-Type: application/json
 
 {
@@ -45,33 +45,33 @@ Content-Type: application/json
 ?? status == 200
 
 ###
-# get just 5 chuck norris quotes
+# retrieve a certain number of ships
 ###
-GET http://localhost:{{port}}/ship?limit=2
+GET http://{{host}}:{{port}}/ship?limit=3
 
 ?? status == 200
 ###
 # get specific ship by id
 ###
-GET http://localhost:9600/ship/1
+GET http://{{host}}:{{port}}/ship/1
 
 ?? status == 500
 ###
 # get just a specific chuck norris quote by id
 ###
-GET http://localhost:9600/default_ships
+GET http://{{host}}:{{port}}/default_ships
 
 ?? status == 200
 
 ###
 # DELETE an existing ship (before ensure that the ship exists)
 ###
-DELETE http://localhost:{{port}}/ship/1
+DELETE http://{{host}}:{{port}}/ship/2
 
 ?? status == 204
 ###
 # DELETE an existing ship (before ensure that the ship exists)
 ###
-DELETE http://localhost:9600/ship/1234567890
+DELETE http://{{host}}:{{port}}/ship/1234567890
 
-?? status == 666
+?? status == 404
