@@ -34,10 +34,10 @@ To use it:
 
 
 == Links
-* http://localhost:9790/targets[Prometheus Targets]
-* http://localhost:9730/connections/datasources/edit/defqw6dierj7ke[Grafana Datasource] (admin/admin)
-* http://localhost:9700/chuck_norris/[FastAPI Chuck Norris Quotes]
-* http://localhost:9710/?pgsql=db&username=chuck&db=chuck_norris_db[Show public schema]
+* http://localhost:9690/targets[Prometheus Targets]
+* http://localhost:9630/connections/datasources/edit/defqw6dierj7ke[Grafana Datasource] (admin/admin)
+* http://localhost:9600/chuck_norris/[FastAPI Chuck Norris Quotes]
+* http://localhost:9610/?pgsql=db&username=star&password=trek&db=star-trek-ships-db[Adminer Startrek Ships DB]
 
 == How 2 use
 First of all we need to add you sourcecode to the container setup.   
