@@ -28,6 +28,13 @@ fake_users_db = {
         "email": "johndoe@example.com",
         "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
         "disabled": False,
+    },
+    "volker": {
+        "username": "volker",
+        "full_name": "JavaVolker",
+        "email": "CWA.Coder.With.AttitudeAtgmail.com",
+        "hashed_password": "$2b$12$XSeIVJPWjKQvfoP2I/9pXe6FMPpIRYA55Xr.T613A2kZWDvRl5DWm",
+        "disabled": False
     }
 }
 
