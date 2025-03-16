@@ -1,0 +1,23 @@
+meta {
+  name: create cheuck norris
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:8000/chuck_norris/
+  body: json
+  auth: none
+}
+
+headers {
+  accept: application/json
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWJkdWxhemVlekB4LmNvbSIsImV4cGlyZXMiOjE3NDEzODcwNjAuMDM4MjAyfQ.kcjkHcbXiXDzzONqG3Z_vdNpGKW7xQtkc2sQ7omQDTw
+  Content-Type: application/json
+}
+
+body:json {
+   {
+    "message": "Chuck Norris kann Drehtüren zuschlagen.", "language": "german"
+  }
+}

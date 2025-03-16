@@ -1,0 +1,43 @@
+{
+  "name": "dc-startrek",
+  "dockerComposeFile": [
+    "docker-compose.yml"
+  ],
+  "forwardPorts": [
+    5000,
+    8000,
+    8810
+  ],
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "git.rebaseWhenSync": true,
+        "remote.restoreForwardedPorts": false,
+        "remote.autoForwardPorts": false,
+        "typescript.preferences.quoteStyle": "single",
+        "[python]": {
+          //"editor.defaultFormatter": "ms-python.autopep8"
+        }
+      },
+      "extensions": [
+        "PKief.material-icon-theme",
+        "ms-python.python",
+        "anweber.vscode-httpyac",
+        "asciidoctor.asciidoctor-vscode",
+        "GitHub.vscode-github-actions",
+        "ritwickdey.LiveServer",
+        "qwtel.sqlite-viewer",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "service": "dc-startrek",
+  "workspaceFolder": "/src",
+  "remoteUser": "vscode",
+  //"postCreateCommand": "python generic_hello.py",
+  "postStartCommand": "pip install -r requirements.txt; ptw *.py",
+  "shutdownAction": "stopCompose"
+}

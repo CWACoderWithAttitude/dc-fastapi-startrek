@@ -1,0 +1,33 @@
+meta {
+  name: create list of games
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:9800/board_games_bulk
+  body: json
+  auth: none
+}
+
+body:json {
+  
+  [{
+    "title": "Catan Create_bruno1",
+    "publisher": "Updated Publisher",
+    "min_number_of_players": 2,
+    "max_number_of_players": 5,
+    "typical_duration": 90,
+    "ean13": "ean13",
+    "min_age": 10
+  },
+  {
+    "title": "Catan Create_bruno2",
+    "publisher": "Updated Publisher",
+    "min_number_of_players": 2,
+    "max_number_of_players": 5,
+    "typical_duration": 90,
+    "ean13": "ean13",
+    "min_age": 10
+  }]
+}

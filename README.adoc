@@ -1,0 +1,56 @@
+= https://github.com/CWACoderWithAttitude/dc-startrek[dc-startrek]
+:source-highlighter: coderay
+
+== TL;DR
+Container based python development. Ships with https://www.postgresql.org[postgreSQL DB] and https://github.com/wodby/adminer[adminer].
+VSC setup contains some plugins and settings in link:./.devcontainer/devcontainer.json[devcontainer.json]
+
+== Components
+
+=== FastAPI
+FastAPI is used to provide the REST API to manage Chuck Norris quotes.
+The demo app was build TDD style. Coverage is currently at ~95%.
+On devcontainer startup `ptw` test listener is started.
+
+
+=== PostgreSQL
+Current values for credentials, db name and external db port can be set in 
+[source,%linenums,text,highlight=1-5]
+include::./.devcontainer/.env[]
+
+=== Adminer
+Adminer is used to peek into the database.
+
+=== Prometheus
+Prometheus will collect application metrics.
+Default config is shipped with this setup. 
+Please refer to file://./.devcontainer/prometheus_data/prometheus.yml[prometheus.yml] for details.
+
+=== Grafana
+Is used to visualize the metrics collected by Prometheus.
+To use it:
+1. add prometheus connection to http://prometheus:9090, test and save
+2. add dashboard by importing dashboard `18739` from grafana website.
+
+
+== Links
+* http://localhost:9790/targets[Prometheus Targets]
+* http://localhost:9730/connections/datasources/edit/defqw6dierj7ke[Grafana Datasource] (admin/admin)
+* http://localhost:9700/chuck_norris/[FastAPI Chuck Norris Quotes]
+* http://localhost:9710/?pgsql=db&username=chuck&db=chuck_norris_db[Show public schema]
+
+== How 2 use
+First of all we need to add you sourcecode to the container setup.   
+Diffent ways:
+1. Copy the source code to this projects root folder
+2. Setup the path to your sourcecode in `.env`.
+[source,%linenums,text,highlight=10]
+include::./.devcontainer/.env[]
+
+== Monitoring
+* https://kubernetestraining.io/blog/fastapi-prometheus-monitoring[Instrumenting FastAPI Apps with Prometheus Metrics]
+* https://dev.to/ken_mwaura1/getting-started-monitoring-a-fastapi-app-with-grafana-and-prometheus-a-step-by-step-guide-3fbn[Getting Started: Monitoring a FastAPI App with Grafana and Prometheus - A Step-by-Step Guide]
+
+
+
+

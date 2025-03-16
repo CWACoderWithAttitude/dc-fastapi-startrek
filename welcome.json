@@ -1,0 +1,22 @@
+{
+    "msg": [
+        {
+            "msg": "Welcome"
+        },
+        {
+            "msg": "to"
+        },
+        {
+            "msg": "the"
+        },
+        {
+            "msg": "generic"
+        },
+        {
+            "msg": "Python"
+        },
+        {
+            "msg": "Devcontainer"
+        }
+    ]
+}

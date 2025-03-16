@@ -1,0 +1,93 @@
+services:
+  dc-startrek:
+    container_name: dc-startrek
+    hostname: dc-startrek.local
+    env_file:
+      - .env
+    build:
+      context: .
+    working_dir: /src
+    volumes:
+      - ..:/src:cached
+    command: >
+      bash -c "sleep infinity"
+    ports:
+      - "${app_port}:8000"
+    networks:
+      dc-startrek-net:
+    #depends_on:
+    #  - db
+  db:
+  #image: postgres:17.4-alpine3.21
+    image: postgres:14.1-alpine
+    container_name: db
+    restart: always
+    environment:
+      - POSTGRES_USER=${db_user} #postgres
+      - POSTGRES_PASSWORD=${db_password} #postgres
+      - POSTGRES_DB=${db_name} #fritzbox
+    ports:
+      - "${db_port}:5432"
+    networks:
+      dc-startrek-net:
+    volumes:
+     - db_data_chuck_norris14:/var/lib/postgresql/data
+  adminer:
+    image: adminer:5.0.4
+    container_name: adminer
+    restart: always
+    ports:
+      - ${ADMINER_HTTP_EXTERN}:8080
+    depends_on:
+      - db
+    networks:
+      dc-startrek-net:
+
+  # prometheus:
+  #   image: prom/prometheus
+  #   container_name: prometheus
+  #   ports:
+  #     - ${prometheus_port}:9090
+  #   volumes:
+  #     - ./prometheus_data/:/etc/prometheus/
+  #   command:
+  #     - '--config.file=/etc/prometheus/prometheus.yml'
+  #   networks:
+  #     dc-startrek-net:
+  #   depends_on:
+  #       - dc-startrek
+
+  # grafana:
+  #   image: grafana/grafana
+  #   container_name: grafana
+  #   ports:
+  #     - ${grafana_port}:3000
+  #   volumes:
+  #     - grafana_data:/var/lib/grafana
+  #   networks:
+  #     dc-startrek-net:
+  #   depends_on:
+  #     - prometheus
+networks:
+  dc-startrek-net:
+volumes:
+  prometheus_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./prometheus_data
+  grafana_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./grafana_data
+  db_data_chuck_norris14: 
+    driver: local
+    #driver_opts:
+    #  o: bind
+    #  type: none
+    #  device: ./db_data_chuck_norris
+
+

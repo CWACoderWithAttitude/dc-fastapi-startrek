@@ -1,0 +1,21 @@
+meta {
+  name: create board game2
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:9800/board_games/
+  body: json
+  auth: none
+}
+
+headers {
+  accept: application/json
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWJkdWxhemVlekB4LmNvbSIsImV4cGlyZXMiOjE3NDEzODcwNjAuMDM4MjAyfQ.kcjkHcbXiXDzzONqG3Z_vdNpGKW7xQtkc2sQ7omQDTw
+  Content-Type: application/json
+}
+
+body:json {
+  {"title":"Bruno the game","publisher":"Publisher name","min_number_of_players":1,"max_number_of_players":6,"typical_duration":11,"ean13":"0123456789123","min_age":12}
+}

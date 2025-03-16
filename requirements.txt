@@ -1,0 +1,16 @@
+uvicorn
+fastapi
+httpx
+pytest
+pytest-watch
+sqlalchemy
+sqlmodel
+psycopg2
+prometheus_fastapi_instrumentator
+PyJWT   #==2.8.0
+python-decouple #==3.8
+pydantic[email] #==1.9.0
+#pytest-cov
+#pytest-mock
+#pytest-asyncio
+#pytest-sugar
