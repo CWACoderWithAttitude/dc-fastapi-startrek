@@ -32,6 +32,18 @@ services:
       dc-startrek-net:
     volumes:
      - db_data_chuck_norris14:/var/lib/postgresql/data
+  postgres_exporter:
+    image: wrouesnel/postgres_exporter
+    container_name: postgres_exporter
+    restart: always
+    ports:
+      - ${postgres_exporter_port}:9187
+    environment:
+      - DATA_SOURCE_NAME=postgresql://${db_user}:${db_password}@db:5432/${db_name}?sslmode=disable
+    networks:
+      dc-startrek-net:
+    depends_on:
+      - db
   adminer:
     image: adminer:5.0.4
     container_name: adminer

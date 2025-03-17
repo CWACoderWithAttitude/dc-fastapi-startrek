@@ -18,6 +18,10 @@ Current values for credentials, db name and external db port can be set in
 [source,%linenums,text,highlight=1-5]
 include::./.devcontainer/.env[]
 
+=== Postgres Monitoring
+Added monitoring Postgres with `wrouesnel/postgres_exporter`. AToW there is no dashboard in grafa to visualize the data.
+Metrics are scraped by prometheus on http://localhost:9187/metrics.
+
 === Adminer
 Adminer is used to peek into the database.
 
@@ -25,6 +29,7 @@ Adminer is used to peek into the database.
 Prometheus will collect application metrics.
 Default config is shipped with this setup. 
 Please refer to file://./.devcontainer/prometheus_data/prometheus.yml[prometheus.yml] for details.
+
 
 === Grafana
 Is used to visualize the metrics collected by Prometheus.
