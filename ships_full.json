@@ -189,5 +189,84 @@
         "classification": "Excelsior",
         "comment": "According to https://memory-alpha.fandom.com/wiki/Starships_(Decipher): sign is NCC-40521",
         "details": "https://memory-alpha.fandom.com/wiki/USS_Agamemnon"
+    },
+    {
+        "name": "USS Akira",
+        "sign": "NCC-62497",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Avalon",
+        "sign": "NCC-63887",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Firesword",
+        "sign": "NCC-64280",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Helios",
+        "sign": "NCC-63284",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Masaka",
+        "sign": "NCC-63277",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Rabin",
+        "sign": "NCC-63293",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Sentinel",
+        "sign": "NCC-68455",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Spector",
+        "sign": "NCC-63898",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Thunderchild",
+        "sign": "NCC-63549",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    }
+    ,
+    {
+        "name": "USS Wersching",
+        "sign": "NCC-63328",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    }
+    ,
+    {
+        "name": "(Name unknown)",
+        "sign": "NCC-63646",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
     }
 ]
