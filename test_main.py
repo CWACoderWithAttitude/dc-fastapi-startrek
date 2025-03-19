@@ -122,7 +122,7 @@ def test_get_default_ships(session: Session, client: TestClient):
     assert ships.status_code == 200
     list_of_ships = ships.json()
     assert list_of_ships != None
-    assert len(list_of_ships) == 33
+    assert len(list_of_ships) == 44
 
 
 def test_update_existing_ship(session: Session, client: TestClient):
