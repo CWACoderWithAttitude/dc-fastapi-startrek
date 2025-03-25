@@ -1,5 +1,8 @@
+from turtle import onclick
 import streamlit as st
 import requests
+
+from views import list_ships
 
 # FastAPI backend URL
 API_BASE_URL = "http://localhost:8000"  # Replace with your FastAPI backend URL
@@ -8,6 +11,19 @@ st.title("🚀 Star Trek Ship Manager")
 
 # Tabs for different operations
 tab1, tab2, tab3, tab4 = st.tabs(["View Ships", "Add Ship", "Update Ship", "Delete Ship"])
+
+
+def click():
+    print("click")
+
+
+def get_classifications():
+    response = requests.get(f"{API_BASE_URL}/classification/")
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return []
+
 
 # View Ships
 with tab1:
@@ -18,14 +34,23 @@ with tab1:
         response = requests.get(f"{API_BASE_URL}/ship/?skip={skip}&limit={limit}")
         if response.status_code == 200:
             ships = response.json()
+            # for ship in ships:
+            #    st.write(
+            #        f"**ID**: {ship['id']}, **Sign**: {ship['sign']}, **Name**: {ship['name']}, **Classification**: {ship['classification']}")
+            list_of_ships = []
             for ship in ships:
-                st.write(
-                    f"**ID**: {ship['id']}, **Name**: {ship['name']}, **Classification**: {ship['classification']}")
+                list_of_ships.append({"Id": f"{ship['id']}", "Name": f"{ship['name']}", "Sign": f"{ship['sign']}",
+                                      "Classification": f"{ship['classification']}"})
+            st.table(list_of_ships)
         else:
             st.error(f"Error: {response.status_code} - {response.text}")
 
+
 # Add Ship
 with tab2:
+    response = requests.get(f"{API_BASE_URL}/classifications")
+    # if response.status_code == 200:
+    #    st.write(f"classificatuions: {response.json()}")
     st.header("Add a New Ship")
     name = st.text_input("Name")
     classification = st.text_input("Classification")
@@ -45,7 +70,6 @@ with tab2:
             st.success("Ship added successfully!")
         else:
             st.error(f"Error: {response.status_code} - {response.text}")
-
 # Update Ship
 with tab3:
     st.header("Update an Existing Ship")

@@ -215,6 +215,22 @@ def get_ships(skip: int = 0, limit: int = 10, session: Session = Depends(get_ses
     return ships
 
 
+@app.get("/classifications", response_model=list[str], tags=["startrek", "classifications"])
+def get_classifications(session: Session = Depends(get_session)):
+    """
+    Get distinct list of known ship classifications
+    """
+    # classifications = session.exec(select(Ship.classification)).distinct().all()
+    # return [c[0] for c in classifications]
+    ships = session.exec(select(Ship)).all()
+    classifications = set()
+    for ship in ships:
+        classifications.add(ship.classification)
+    # classifications = [c['classification'] for c in classifications]
+    return list(classifications)
+    return ["classification1", "classification2", "classification3"]
+
+
 @app.delete("/ship/{ship_id}", tags=["startrek", "ships"], status_code=status.HTTP_204_NO_CONTENT)
 def delete_ship(ship_id: int, session: Session = Depends(get_session)):
     ship = session.get(Ship, ship_id)

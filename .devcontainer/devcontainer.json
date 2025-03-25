@@ -39,5 +39,6 @@
   "remoteUser": "vscode",
   //"postStartCommand": "pip install -r requirements.txt; ptw *.py",
   "postStartCommand": "pip install -r requirements.txt; ./run_server.sh",
+  //"postStartCommand": "pip install uv", //-r requirements.txt; ./run_server.sh",
   "shutdownAction": "stopCompose"
 }

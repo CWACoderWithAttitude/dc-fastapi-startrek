@@ -48,6 +48,13 @@ GET http://{{host}}:{{port}}/ship
 ?? status == 200
 
 ###
+# get all classifications
+###
+GET http://{{host}}:{{port}}/classifications
+
+?? status == 200
+
+###
 # Update a ship
 
 PUT http://{{host}}:{{port}}/ship/2

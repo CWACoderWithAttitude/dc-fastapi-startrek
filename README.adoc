@@ -37,6 +37,11 @@ To use it:
 1. add prometheus connection to http://prometheus:9090, test and save
 2. add dashboard by importing dashboard `18739` from grafana website.
 
+=== Loggin
+https://medium.com/@netopschic/implementing-the-log-monitoring-stack-using-promtail-loki-and-grafana-using-docker-compose-bcb07d1a51aa
+https://github.com/xente/loki-logger-handler
+https://grafana.com/docs/loki/latest/send-data/
+https://grafana.com/docs/alloy/latest/tutorials/send-logs-to-loki/
 
 == Links
 * http://localhost:9690/targets[Prometheus Targets]
@@ -68,5 +73,24 @@ To add a user to the application you can use the following code:
 >>> 
 ```
 
+== Dev Tips
+As i began moving towards https://docs.astral.sh/uv/[uv] to manage my projects i will keep track of steps i take.
+Where feasable i will try to follow tips by https://www.youtube.com/watch?v=jxqGsJEhiAg[arjan.codes]
+
+
+=== Create project from existing stuff
+[source,shell]
+----
+vscode ➜ /src (main) $ uv init
+----
+
+=== Split application from dev dependencies
+I'll just delete all dev stuff from `requirements.txt` and readd dev dependencies to `pyproject.toml`.
+[source,shell]
+----
+vscode ➜ /src (main) $ uv add --dev pytest pytest-watch
+Resolved 38 packages in 342ms
+Audited 37 packages in 0.04ms
+----
 
 

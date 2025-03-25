@@ -155,10 +155,19 @@ def test_update_non_existing_ship(session: Session, client: TestClient):
     assert response.json() == {"detail": "Ship 4711 not found"}
 
 
+def test_get_classifications(session: Session, client: TestClient):
+    _generate_test_ships_in_db(5, session)
+    response = client.get("/classifications")
+    assert response.status_code == 200
+    classifications = response.json()
+    assert classifications != None
+    assert len(classifications) == 15
+
+
 def _generate_test_ships(number: int) -> list[Ship]:
     quotes: list[Ship] = []
     for i in range(number):
-        quote = Ship(name=f"USS-Test-Ship {i}", sign=f"NCC-80816-{i}", classification="Ship Classification")
+        quote = Ship(name=f"USS-Test-Ship {i}", sign=f"NCC-80816-{i}", classification=f"Ship Classification-{i}")
         quotes.append(quote)
     return quotes
 
