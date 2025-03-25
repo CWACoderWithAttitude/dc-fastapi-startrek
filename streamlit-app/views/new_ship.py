@@ -20,7 +20,7 @@ def get_classifications():
 
 def new_ship_page():
     classifications = get_classifications()
-    st.title("New Ship")
+    st.title("New Ship2")
     name = st.text_input("Name")
     classification = st.selectbox("Select Ship Classification",
                                   options=classifications)  # st.text_input("Classification")

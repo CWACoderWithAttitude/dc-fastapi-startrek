@@ -1,7 +1,7 @@
 import streamlit as st
 
 from views.new_ship import new_ship_page
-
+from views.list_ships import list_ships_page
 st.set_page_config(page_title="Star Trek Ship Manager", page_icon="🚀", layout="centered")
 
 page = st.sidebar.radio("Go to", ["List Ships", "Edit Ship", "New Ship"])
@@ -23,3 +23,5 @@ st.sidebar.success("Success Sidebar by Volker")
 
 if page == "New Ship":
     new_ship_page()
+elif page == "List Ships":
+    list_ships_page()
