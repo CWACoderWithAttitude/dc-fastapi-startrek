@@ -6,7 +6,7 @@ API_BASE_URL = "http://localhost:8000"  # Replace with your FastAPI backend URL
 
 def get_classifications():
     print("GET CLASSIFICATIONS1")
-    response = requests.get(f"{API_BASE_URL}/classification/")
+    response = requests.get(f"{API_BASE_URL}/classifications")
     print("GET CLASSIFICATIONS2")
     if response.status_code == 200:
         print("GET CLASSIFICATIONS3")
@@ -31,6 +31,18 @@ def new_ship_page():
     if st.button("Add Ship"):
         if name == None or len(name) < 3:
             print(f"No Namne {name}?!")
+            return
+        if classification == None or len(classification) < 3:
+            print(f"No Classification {classification}?!")
+            return
+        if sign == None or len(sign) < 3:
+            print(f"No Sign {sign}?!")
+            return
+        if speed == None or len(speed) < 3:
+            print(f"No Speede {speed}?!")
+            return
+        if captain == None or len(captain) < 3:
+            print(f"No Captain {captain}?!")
             return
         payload = {
             "name": name,
