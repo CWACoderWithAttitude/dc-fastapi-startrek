@@ -65,27 +65,38 @@
     {
         "name": "USS Enterprise",
         "sign": "NCC-1701",
-        "classification": "Constitution"
+        "classification": "Constitution",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701)"
     },
     {
         "name": "USS Enterprise",
         "sign": "NCC-1701-A",
-        "classification": "Constitution"
+        "classification": "Constitution II",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-A)"
     },
     {
         "name": "USS Enterprise",
         "sign": "NCC-1701-B",
-        "classification": "Excelsior"
+        "classification": "Excelsior",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-B)"
     },
     {
         "name": "USS Enterprise",
         "sign": "NCC-1701-C",
-        "classification": "Ambassador"
+        "classification": "Ambassador",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-C)"
     },
     {
         "name": "USS Enterprise",
         "sign": "NCC-1701-D",
-        "classification": "Galaxy"
+        "classification": "Constitution",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-D)"
+    },
+    {
+        "name": "USS Enterprise",
+        "sign": "NCC-1701-E",
+        "classification": "Sovereign",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-D)"
     },
     {
         "name": "USS Galaxy",
@@ -117,15 +128,15 @@
         "details": "http://memory-alpha.org/wiki/USS_Rhode_Island"
     },
     {
-        "name": "ISS Defiant",
-        "sign": "NX-74205",
-        "classification": "Defiant"
-    },
-    {
         "name": "USS Discovery",
         "sign": "NCC-1031",
         "classification": "Crossfield",
-        "details": "http://memory-alpha.org/wiki/USS_Rhode_Island"
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Discovery"
+    },
+    {
+        "name": "ISS Defiant",
+        "sign": "NX-74205",
+        "classification": "Defiant"
     },
     {
         "name": "USS Crazy Horse",
