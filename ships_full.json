@@ -5,9 +5,10 @@
         "classification": "California"
     },
     {
-        "name": "USS Kelce Mae",
-        "sign": "NCC-",
-        "classification": "n/n"
+        "name": "USS Kelcie Mae",
+        "sign": "NCC-618",
+        "classification": "Kelcie Mae",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Kelcie_Mae"
     },
     {
         "name": "USS Cayuga",
@@ -26,12 +27,14 @@
     {
         "name": "USS Dauntless",
         "sign": "NCC-80816",
-        "classification": ""
+        "classification": "Dauntless",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Dauntless_(NCC-80816)"
     },
     {
         "name": "USS Protonstar",
-        "sign": "NCC-",
-        "classification": ""
+        "sign": "NX-76884-",
+        "classification": "Protonstar",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Protostar"
     },
     {
         "name": "USS Defiant",
@@ -39,9 +42,16 @@
         "classification": "Constitution"
     },
     {
+        "name": "USS Defiant",
+        "sign": "NX-74205",
+        "classification": "Defiant",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Defiant_(2370)"
+    },
+    {
         "name": "USS Enterprise",
         "sign": "NX-01",
-        "classification": "Constitution"
+        "classification": "NX",
+        "url": "https://memory-alpha.fandom.com/wiki/Enterprise_(NX-01)"
     },
     {
         "name": "USS Franklin",
@@ -49,7 +59,8 @@
         "classification": "Starship",
         "speed": "Warp 4",
         "captain": "balthazar edison",
-        "comment": "lost ~2160, first warp 4 capable ship"
+        "comment": "lost ~2160, first warp 4 capable ship",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Franklin"
     },
     {
         "name": "USS Enterprise",
@@ -251,17 +262,15 @@
         "sign": "NCC-63549",
         "classification": "Akira",
         "comment": "",
-        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
-    }
-    ,
+        "url": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
     {
         "name": "USS Wersching",
         "sign": "NCC-63328",
         "classification": "Akira",
         "comment": "",
-        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
-    }
-    ,
+        "url": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
     {
         "name": "(Name unknown)",
         "sign": "NCC-63646",

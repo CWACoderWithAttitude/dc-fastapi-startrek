@@ -2,9 +2,11 @@ import streamlit as st
 
 from views.new_ship import new_ship_page
 from views.list_ships import list_ships_page
-st.set_page_config(page_title="Star Trek Ship Manager", page_icon="🚀", layout="centered")
+from views.show_application_links import show_application_links
 
-page = st.sidebar.radio("Go to", ["List Ships", "Edit Ship", "New Ship"])
+st.set_page_config(page_title="Star Trek Ship Manager", page_icon="🚀", layout="wide")
+
+page = st.sidebar.radio("Go to", ["Show Application Links", "List Ships", "Edit Ship", "New Ship"])
 # list_page = st.Page(page="views/list_ships.py", title="List Ships", icon=":material/account_circle:", default=False)
 # edit_page = st.Page(page="views/edit_ship.py", title="Edit Ship", icon=":material/account_circle:", default=False)
 # new_page = st.Page(page="views/new_ship.py", title="New Ship", icon=":material/account_circle:", default=True)
@@ -25,3 +27,5 @@ if page == "New Ship":
     new_ship_page()
 elif page == "List Ships":
     list_ships_page()
+elif page == "Show Application Links":
+    show_application_links()

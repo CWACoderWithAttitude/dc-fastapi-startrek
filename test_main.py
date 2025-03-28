@@ -3,7 +3,6 @@ from pydoc import cli
 import select
 from urllib import response
 from main import Ship, app, get_session
-# from main import _read_default_quotes_from_json, ChuckNorrisQuote
 from httpx import Response
 import pytest
 from fastapi.testclient import TestClient
@@ -122,7 +121,7 @@ def test_get_default_ships(session: Session, client: TestClient):
     assert ships.status_code == 200
     list_of_ships = ships.json()
     assert list_of_ships != None
-    assert len(list_of_ships) == 44
+    assert len(list_of_ships) == 45
 
 
 def test_update_existing_ship(session: Session, client: TestClient):
@@ -161,15 +160,26 @@ def test_get_classifications(session: Session, client: TestClient):
     assert response.status_code == 200
     classifications = response.json()
     assert classifications != None
-    assert len(classifications) == 15
+    assert len(classifications) == 5
+
+
+def test_get_info(client: TestClient):
+    response = client.get("/info")
+    assert response.status_code == 200
+    info = response.json()
+    assert info != None
+    assert info['db_url'] == 'postgresql://star:trek@db/star-trek-ships-db'
+    assert info['SECRET_KEY'] == "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+    assert info['ALGORITHM'] == "HS256"
+    assert info['ACCESS_TOKEN_EXPIRE_MINUTES'] == 30
 
 
 def _generate_test_ships(number: int) -> list[Ship]:
-    quotes: list[Ship] = []
+    ships: list[Ship] = []
     for i in range(number):
         quote = Ship(name=f"USS-Test-Ship {i}", sign=f"NCC-80816-{i}", classification=f"Ship Classification-{i}")
-        quotes.append(quote)
-    return quotes
+        ships.append(quote)
+    return ships
 
 
 def _generate_test_ships_in_db(number: int, session: Session) -> list[Ship]:

@@ -27,32 +27,33 @@ def new_ship_page():
     sign = st.text_input("Sign")
     speed = st.text_input("Speed")
     captain = st.text_input("Captain")
-
+    entered_data_is_valid = True
     if st.button("Add Ship"):
         if name == None or len(name) < 3:
-            print(f"No Namne {name}?!")
-            return
-        if classification == None or len(classification) < 3:
-            print(f"No Classification {classification}?!")
-            return
+            st.error(f"No Namne or {name} too short?!")
+            entered_data_is_valid = False
+        if classification == None or classification == "":
+            st.error(f"Please select a Ship Classification {classification}!")
+            entered_data_is_valid = False
         if sign == None or len(sign) < 3:
-            print(f"No Sign {sign}?!")
-            return
+            st.error(f"No Sign {sign}?!")
+            entered_data_is_valid = False
         if speed == None or len(speed) < 3:
-            print(f"No Speede {speed}?!")
-            return
+            st.error(f"No Speede {speed}?!")
+            entered_data_is_valid = False
         if captain == None or len(captain) < 3:
-            print(f"No Captain {captain}?!")
-            return
-        payload = {
-            "name": name,
-            "classification": classification,
-            "sign": sign,
-            "speed": speed,
-            "captain": captain,
-        }
-        response = requests.post(f"{API_BASE_URL}/ship/", json=payload)
-        if response.status_code == 201:
-            st.success(f"Ship {response.json()} added successfully!")
-        else:
-            st.error(f"Error: {response.status_code} - {response.text}")
+            st.error(f"No Captain {captain}?!")
+            entered_data_is_valid = False
+        if entered_data_is_valid:
+            payload = {
+                "name": name,
+                "classification": classification,
+                "sign": sign,
+                "speed": speed,
+                "captain": captain,
+            }
+            response = requests.post(f"{API_BASE_URL}/ship/", json=payload)
+            if response.status_code == 201:
+                st.success(f"Ship {response.json()} added successfully!")
+            else:
+                st.error(f"Error: {response.status_code} - {response.text}")
