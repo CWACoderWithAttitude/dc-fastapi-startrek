@@ -93,4 +93,5 @@ Resolved 38 packages in 342ms
 Audited 37 packages in 0.04ms
 ----
 
-
+== Kown issues
+* testing of authentication is not done yet. This can serve as https://stackoverflow.com/questions/75466872/integration-testing-fastapi-with-user-authentication[helpful link]

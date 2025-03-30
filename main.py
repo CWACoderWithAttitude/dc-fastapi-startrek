@@ -259,7 +259,6 @@ async def delete_ship(ship_id: int, session: Session = Depends(get_session)):
         raise HTTPException(status_code=404, detail=f"Ship {ship_id} not found")
     session.delete(ship)
     session.commit()
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 @app.put("/ship_secure/{ship_id}", tags=["startrek", "ships"])
@@ -270,6 +269,7 @@ async def update_ship_secure(ship_id: int, current_user: Annotated[User, Depends
     db_ship.name = ship_update.name
     db_ship.classification = ship_update.classification
     db_ship.sign = ship_update.sign
+    db_ship.url = ship_update.url
     db_ship.comment = f"Last updated by {current_user.email}"
 
     session.commit()
@@ -285,6 +285,7 @@ async def update_ship(ship_id: int, ship_update: Ship, session: Session = Depend
     db_ship.name = ship_update.name
     db_ship.classification = ship_update.classification
     db_ship.sign = ship_update.sign
+    db_ship.url = ship_update.url
 
     session.commit()
     session.refresh(db_ship)

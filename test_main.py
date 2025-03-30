@@ -49,6 +49,21 @@ def client_fixture(session: Session):
     app.dependency_overrides.clear()
 
 
+@pytest.fixture(scope="module")
+def test_user_correct():
+    return {"username": "johndoe", "password": "secret"}
+
+
+@pytest.fixture(scope="module")
+def test_user_incorrect_passwd():
+    return {"username": "johndoe", "password": "thisIsWrong"}
+
+
+@pytest.fixture(scope="module")
+def test_user_unknown():
+    return {"username": "johndoe", "password": "thisIsWrong"}
+
+
 def test_create_one_ship(session: Session, client: TestClient):
     input = {
         "name": "USS Dauntless",
@@ -65,6 +80,67 @@ def test_create_one_ship(session: Session, client: TestClient):
     assert response.json()['sign'] == input['sign']
     assert response.json()['classification'] == input['classification']
     assert response.json()['id'] > 0
+
+# https://stackoverflow.com/questions/75466872/integration-testing-fastapi-with-user-authentication
+
+
+def test_login_correct_user_credentials(client, test_user_correct):
+    """
+    Test generation of auth tokens
+    """
+    response = client.post("/token", data=test_user_correct)
+    assert response.status_code == 200
+    token = response.json()["access_token"]
+    assert token is not None
+
+
+def test_login_incorrect_user_credentials(client, test_user_incorrect_passwd):
+    """
+    Test generation of auth tokens
+    """
+    response = client.post("/token", data=test_user_incorrect_passwd)
+    assert response.status_code == 401
+
+
+def test_login_unknown_user(client, test_user_unknown):
+    """
+    Test generation of auth tokens
+    """
+    response = client.post("/token", data=test_user_unknown)
+    assert response.status_code == 401
+
+
+def test_get_user_me_autheneticated(client, test_user_correct):
+    token = client.post("/token", data=test_user_correct)
+    response = client.get("/users/me", headers={"Authorization": f"Bearer {token.json()['access_token']}"})
+    assert response.status_code == 200
+    assert response.json()['username'] == test_user_correct['username']
+    assert "email" in response.json().keys()
+    assert response.json()['email'] == 'johndoe@example.com'
+
+
+def test_post_ship_secure_autheneticated(client, test_user_correct):
+    token = client.post("/token", data=test_user_correct)
+    input = {
+        "name": "USS Franklin",
+        "sign": "NX-326",
+        "classification": "Starship",
+        "speed": "Warp 4",
+        "captain": "balthazar edison",
+        "comment": "lost ~2160, first warp 4 capable ship",
+        "url": "https://memory-alpha.fandom.com/wiki/Star_Trek:_The_Next_Generation"
+    }
+    response = client.post("/ship_secure", json=input,
+                           headers={"Authorization": f"Bearer {token.json()['access_token']}"})
+    assert response.status_code == 201
+    assert response.json()['sign'] == input['sign']
+
+
+def test_get_user_me_items_autheneticated(client, test_user_correct):
+    token = client.post("/token", data=test_user_correct)
+    response = client.get("/users/me/items", headers={"Authorization": f"Bearer {token.json()['access_token']}"})
+    assert response.status_code == 200
+    assert "Foo" == response.json()[0]['item_id']
 
 
 def test_create_one_ship_full(session: Session, client: TestClient):
@@ -121,7 +197,7 @@ def test_get_default_ships(session: Session, client: TestClient):
     assert ships.status_code == 200
     list_of_ships = ships.json()
     assert list_of_ships != None
-    assert len(list_of_ships) == 45
+    assert len(list_of_ships) == 46
 
 
 def test_update_existing_ship(session: Session, client: TestClient):
@@ -130,15 +206,19 @@ def test_update_existing_ship(session: Session, client: TestClient):
     my_update = {
         "name": f"USS Dauntless{random}",
         "sign": f"NCC-80816{random}",
-        "classification": f"Ship Classification{random}"
+        "classification": f"Ship Classification{random}",
+        "url": "http://www.memory-alpha.com/wiki/USS_Dauntless2"
     }
-    response = client.put(f"/ship/{test_ships[0].id}", json=my_update)
+    id_to_update = test_ships[0].id
+    response = client.put(f"/ship/{id_to_update}", json=my_update)
     assert response.status_code == 200
     assert response.json() != None
-    assert response.json()['id'] == test_ships[0].id
-    assert response.json()['name'] == my_update['name']
-    assert response.json()['sign'] == my_update['sign']
-    assert response.json()['classification'] == my_update['classification']
+    new_ship = response.json()
+    assert new_ship['id'] == id_to_update
+    assert new_ship['name'] == my_update['name']
+    assert new_ship['sign'] == my_update['sign']
+    assert new_ship['url'] == my_update['url']
+    assert new_ship['classification'] == my_update['classification']
 
 
 def test_update_non_existing_ship(session: Session, client: TestClient):
