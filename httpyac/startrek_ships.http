@@ -116,8 +116,8 @@ POST http://localhost:9600/token
 Content-Type: application/x-www-form-urlencoded
 
 grant_type=password
-username=volker
-password=Example1!
+username=johndoe
+password=secret
 scope=
 client_id=string
 client_secret=string

@@ -1,3 +1,6 @@
+import logging
+from multiprocessing import Queue
+from logging_loki import LokiQueueHandler
 from datetime import datetime, timedelta, timezone
 from typing import Annotated, Literal
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -28,6 +31,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = ""
     ALGORITHM: str = ""
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 0
+    LOKI_ENDPOINT: str = "http://loki:3100/loki/api/v1/push"
 
     class Config:
         env_file = ".env"
@@ -104,6 +108,15 @@ SQLModel.metadata.create_all(engine)
 app = FastAPI()
 Instrumentator().instrument(app).expose(app)
 
+loki_logs_handler = LokiQueueHandler(
+    Queue(-1),
+    url=settings.LOKI_ENDPOINT,
+    tags={"application": "fastapi"},
+    version="1",
+)
+
+uvicorn_access_logger = logging.getLogger("uvicorn.access")
+uvicorn_access_logger.addHandler(loki_logs_handler)
 # oauth2 stuff
 
 

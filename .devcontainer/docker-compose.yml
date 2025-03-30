@@ -14,10 +14,20 @@ services:
     ports:
       - "${app_port}:8000"
       - "${streamlit_app_port}:8501"
+    depends_on:
+      - loki
     networks:
       dc-startrek-net:
     #depends_on:
     #  - db
+
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - "3100:3100"    
+    networks:
+      - dc-startrek-net
   db:
   #image: postgres:17.4-alpine3.21
     image: postgres:14.1-alpine
@@ -81,6 +91,7 @@ services:
       dc-startrek-net:
     depends_on:
        - prometheus
+       - loki
 
 networks:
   dc-startrek-net:
