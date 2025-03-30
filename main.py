@@ -31,7 +31,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = ""
     ALGORITHM: str = ""
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 0
-    LOKI_ENDPOINT: str = "http://loki:3100/loki/api/v1/push"
+    LOKI_ENDPOINT: str = ""  # "http://loki:3100/loki/api/v1/push"
 
     class Config:
         env_file = ".env"
@@ -111,12 +111,15 @@ Instrumentator().instrument(app).expose(app)
 loki_logs_handler = LokiQueueHandler(
     Queue(-1),
     url=settings.LOKI_ENDPOINT,
-    tags={"application": "fastapi"},
+    tags={"application": "startrek-ships"},
     version="1",
 )
+#    labels={"app": "fastapi", "env": "dev"},
 
 uvicorn_access_logger = logging.getLogger("uvicorn.access")
+uvicorn_error_logger = logging.getLogger("uvicorn.error")
 uvicorn_access_logger.addHandler(loki_logs_handler)
+uvicorn_error_logger.addHandler(loki_logs_handler)
 # oauth2 stuff
 
 

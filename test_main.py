@@ -1,9 +1,12 @@
 from os import name
 from pydoc import cli
 import select
+from turtle import up, update
 from urllib import response
+
+from anyio import EndOfStream
 from main import Ship, app, get_session
-from httpx import Response
+from httpx import Response, get
 import pytest
 from fastapi.testclient import TestClient
 from fastapi import status
@@ -134,6 +137,46 @@ def test_post_ship_secure_autheneticated(client, test_user_correct):
                            headers={"Authorization": f"Bearer {token.json()['access_token']}"})
     assert response.status_code == 201
     assert response.json()['sign'] == input['sign']
+
+
+def test_update_ship_secure_autheneticated(client, test_user_correct):
+    token = client.post("/token", data=test_user_correct)
+    jwt = token.json()
+    assert jwt is not None
+    assert jwt['access_token'] is not None
+    t = token.json()['access_token']
+    input = {
+        "name": "USS Franklin",
+        "sign": "NX-326",
+        "classification": "Starship",
+        "speed": "Warp 4",
+        "captain": "balthazar edison",
+        "comment": "lost ~2160, first warp 4 capable ship",
+        "url": "https://memory-alpha.fandom.com/wiki/Star_Trek:_The_Next_Generation"
+    }
+    response = client.post("/ship_secure", json=input,
+                           headers={"Authorization": f"Bearer {t}"})
+    ship_id = response.json()['id']
+    assert ship_id == 1
+    random = _generate_random_number()
+    update = {
+        "name": f"USS Franklin-{random}",
+        "sign": "NX-326",
+        "classification": "Starship",
+        "speed": "Warp 4",
+        "captain": "balthazar edison",
+        "comment": "lost ~2160, first warp 4 capable ship",
+        "url": "https://memory-alpha.fandom.com/wiki/Star_Trek:_The_Next_Generation"
+    }
+    updated_ship = client.put(f"/ship_secure/{ship_id}", json=update,
+                              headers={"Authorization": f"Bearer {t}"})
+    assert updated_ship.status_code == 200
+    u = updated_ship.json()
+    c: str = u['comment']
+    assert u['name'] == update['name']
+    """
+    assert c.endswith('johmndoe@example.com')
+    """
 
 
 def test_get_user_me_items_autheneticated(client, test_user_correct):

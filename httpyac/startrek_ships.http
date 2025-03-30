@@ -57,7 +57,7 @@ GET http://{{host}}:{{port}}/classifications
 ###
 # Update a ship
 
-PUT http://{{host}}:{{port}}/ship/2
+PUT http://{{host}}:{{port}}/ship/20
 Content-Type: application/json
 
 {
@@ -97,8 +97,7 @@ GET http://{{host}}:{{port}}/default_ships
 ###
 # DELETE an existing ship (before ensure that the ship exists)
 ###
-DELETE http://{{host}}:{{port}}/ship/2
-
+DELETE http://{{host}}:{{port}}/ship/3
 ?? status == 204
 ###
 # DELETE an existing ship (before ensure that the ship exists)

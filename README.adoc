@@ -38,10 +38,15 @@ To use it:
 2. add dashboard by importing dashboard `18739` from grafana website.
 
 === Loggin
-https://medium.com/@netopschic/implementing-the-log-monitoring-stack-using-promtail-loki-and-grafana-using-docker-compose-bcb07d1a51aa
-https://github.com/xente/loki-logger-handler
-https://grafana.com/docs/loki/latest/send-data/
-https://grafana.com/docs/alloy/latest/tutorials/send-logs-to-loki/
+Logs (access logs for now) are sent to loki and can be visualized in grafana.
+
+* https://medium.com/@netopschic/implementing-the-log-monitoring-stack-using-promtail-loki-and-grafana-using-docker-compose-bcb07d1a51aa
+* https://github.com/xente/loki-logger-handler
+* https://grafana.com/docs/loki/latest/send-data/
+* https://grafana.com/docs/alloy/latest/tutorials/send-logs-to-loki/
+* https://stackoverflow.com/questions/77001129/how-to-configure-fastapi-logging-so-that-it-works-both-with-uvicorn-locally-and
+* https://community.grafana.com/t/loki-healthcheck-in-docker-compose/117767
+* https://medium.com/@pushp1997/capturing-fastapi-server-access-logs-using-loki-and-visualizing-them-on-grafana-a47292064909
 
 == Links
 * http://localhost:9690/targets[Prometheus Targets]
